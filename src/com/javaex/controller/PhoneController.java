@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhoneDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVo;
 
 @WebServlet("/pbc")
@@ -33,6 +34,9 @@ public class PhoneController extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println(action);
 		
+		WebUtil webUtil = new WebUtil();
+		
+		
 		if("list".equals(action)) { //리스트("list")를 요청하면 작동한다~
 			//데이터 가져오기
 			PhoneDao phoneDao = new PhoneDao();
@@ -43,14 +47,23 @@ public class PhoneController extends HttpServlet {
 			request.setAttribute("pList", phoneList);
 			
 			//데이터 + html --> jsp한테 시킨다
+			webUtil.forward(request, response, "/WEB-INF/list.jsp");
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
+			*/
+			
 		}else if("writeForm".equals(action)) { //등록폼("writeForm")을 요청하면 작동한다~
 			//System.out.println("등록폼");
 			
 			//writeForm 포워드하기
+			webUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
+			
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
 			rd.forward(request, response);
+			*/
+			
 		}else if("write".equals(action)) { //등록일때
 			//System.out.println("등록");
 			
@@ -69,7 +82,10 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
+			
+			//response.sendRedirect("/phonebook2/pbc?action=list");
 			
 		}else if("delete".equals(action)){ //삭제일때
 			//System.out.println("삭제");
@@ -83,14 +99,19 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
+			//response.sendRedirect("/phonebook2/pbc?action=list");
 			
 		}else if("updateForm".equals(action)) { //등록폼("writeForm")을 요청하면 작동한다~
 			//System.out.println("수정폼");
 			
 			//writeForm 포워드하기
+			webUtil.forward(request, response, "/WEB-INF/updateForm.jsp");
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/updateForm.jsp");
 			rd.forward(request, response);
+			*/
 		}else if("update".equals(action)){ //수정일때
 			//System.out.println("수정");
 			
@@ -111,7 +132,9 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			response.sendRedirect("/phonebook2/pbc?action=list");
+			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
+			//response.sendRedirect("/phonebook2/pbc?action=list");
 			
 		}else{
 			System.out.println("action 파라미터 없음");
