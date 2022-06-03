@@ -34,9 +34,6 @@ public class PhoneController extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println(action);
 		
-		WebUtil webUtil = new WebUtil();
-		
-		
 		if("list".equals(action)) { //리스트("list")를 요청하면 작동한다~
 			//데이터 가져오기
 			PhoneDao phoneDao = new PhoneDao();
@@ -47,7 +44,7 @@ public class PhoneController extends HttpServlet {
 			request.setAttribute("pList", phoneList);
 			
 			//데이터 + html --> jsp한테 시킨다
-			webUtil.forward(request, response, "/WEB-INF/list.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/list.jsp");
 			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/list.jsp");
 			rd.forward(request, response);
@@ -57,7 +54,7 @@ public class PhoneController extends HttpServlet {
 			//System.out.println("등록폼");
 			
 			//writeForm 포워드하기
-			webUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
 			
 			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/writeForm.jsp");
@@ -82,7 +79,7 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
 			
 			
 			//response.sendRedirect("/phonebook2/pbc?action=list");
@@ -99,7 +96,7 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
 			
 			//response.sendRedirect("/phonebook2/pbc?action=list");
 			
@@ -107,7 +104,7 @@ public class PhoneController extends HttpServlet {
 			//System.out.println("수정폼");
 			
 			//writeForm 포워드하기
-			webUtil.forward(request, response, "/WEB-INF/updateForm.jsp");
+			WebUtil.forward(request, response, "/WEB-INF/updateForm.jsp");
 			/*
 			RequestDispatcher rd = request.getRequestDispatcher("/updateForm.jsp");
 			rd.forward(request, response);
@@ -132,7 +129,7 @@ public class PhoneController extends HttpServlet {
 			System.out.println(count);
 			
 			//리다이렉트 list
-			webUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
 			
 			//response.sendRedirect("/phonebook2/pbc?action=list");
 			

@@ -17,13 +17,13 @@ public class WebUtil {
 	
 	//메소드 일반
 	//포워드
-	public void forward(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException{
+	public static void forward(HttpServletRequest request, HttpServletResponse response, String path) throws ServletException, IOException{
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}
 	
 	//리다이렉트
-	public void redirect(HttpServletRequest request, HttpServletResponse response, String url) throws IOException{
+	public static void redirect(HttpServletRequest request, HttpServletResponse response, String url) throws IOException{
 		response.sendRedirect(url);
 	}
 	
